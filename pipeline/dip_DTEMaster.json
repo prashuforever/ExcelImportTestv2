@@ -89,7 +89,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DTE_MASTER",
+						"referenceName": "EXT_DTE_MASTER",
 						"type": "DatasetReference"
 					}
 				],
