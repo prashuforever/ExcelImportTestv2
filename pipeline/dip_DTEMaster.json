@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyFromBlogToSQL",
+				"name": "ImportDTEMaster",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
