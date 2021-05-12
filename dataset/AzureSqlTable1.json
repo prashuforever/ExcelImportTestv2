@@ -29,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "CLARIZEN_MASTER"
+			"table": "STG_CLARIZEN_MASTER"
 		}
 	}
 }
