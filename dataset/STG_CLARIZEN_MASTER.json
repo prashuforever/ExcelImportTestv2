@@ -1,0 +1,38 @@
+{
+	"name": "STG_CLARIZEN_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Clarizen Master"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PROJECT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "INSTANCE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COMMENTS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIMESTAMP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "STG_CLARIZEN_MASTER"
+		}
+	}
+}
