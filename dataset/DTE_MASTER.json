@@ -2,7 +2,7 @@
 	"name": "DTE_MASTER",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "linked_service_clarizen_master",
+			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
