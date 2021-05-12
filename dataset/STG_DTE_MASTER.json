@@ -1,0 +1,50 @@
+{
+	"name": "STG_DTE_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DTE Master"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DELOITTE_WBS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "INSTANCE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PROJECT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COMMENTS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIMESTAMP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "STATUS",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "STG_DTE_MASTER"
+		}
+	}
+}
