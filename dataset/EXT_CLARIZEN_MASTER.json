@@ -1,0 +1,34 @@
+{
+	"name": "EXT_CLARIZEN_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Clarizen Master"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "CLARIZEN_MASTER",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CLARIZEN_MASTER.xlsx",
+				"folderPath": "source",
+				"container": "azurestorage"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Project",
+				"type": "String"
+			},
+			{
+				"name": "Instance",
+				"type": "String"
+			}
+		]
+	}
+}
