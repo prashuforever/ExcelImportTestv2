@@ -1,0 +1,28 @@
+{
+	"name": "inputClarizenMaster",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_service_clarizen_master",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CLARIZEN_MASTER.csv",
+				"container": "azurestorage"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Project;Instance",
+				"type": "String"
+			}
+		]
+	}
+}
