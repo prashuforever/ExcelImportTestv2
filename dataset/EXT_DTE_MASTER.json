@@ -1,0 +1,42 @@
+{
+	"name": "EXT_DTE_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DTE Master"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "DTE_MASTER",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DTE_MASTER.xlsx",
+				"folderPath": "source",
+				"container": "azurestorage"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Deloitte WBS",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Instance",
+				"type": "String"
+			},
+			{
+				"name": "Project",
+				"type": "String"
+			}
+		]
+	}
+}
