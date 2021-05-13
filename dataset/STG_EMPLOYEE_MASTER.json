@@ -1,0 +1,66 @@
+{
+	"name": "STG_EMPLOYEE_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Employee Master"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EMP_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DELOITTE_EMAIL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DELOITTE_MF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CARGILL_EMAIL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DSID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CARGILL_MANAGER",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ACTIVE_AT_CARGILL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PRIMARY_INSTANCE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COMMENTS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TIMESTAMP",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EMPLOYEE_MASTER"
+		}
+	}
+}

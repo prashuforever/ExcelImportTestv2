@@ -1,0 +1,62 @@
+{
+	"name": "EXT_EMPLOYEE_MASTER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Employee Master"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "EMPLOYEE_MASTER",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EMPLOYEE_MASTER.xlsx",
+				"folderPath": "source",
+				"container": "azurestorage"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Deloitte Email",
+				"type": "String"
+			},
+			{
+				"name": "Deloitte MF",
+				"type": "String"
+			},
+			{
+				"name": "Cargill Email",
+				"type": "String"
+			},
+			{
+				"name": "DSID",
+				"type": "String"
+			},
+			{
+				"name": "Cargill Manager",
+				"type": "String"
+			},
+			{
+				"name": "Onshore/Offshore",
+				"type": "String"
+			},
+			{
+				"name": "Active At Cargill",
+				"type": "String"
+			},
+			{
+				"name": "Primary Instance",
+				"type": "String"
+			}
+		]
+	}
+}
