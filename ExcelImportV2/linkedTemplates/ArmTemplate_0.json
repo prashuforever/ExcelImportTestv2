@@ -361,7 +361,7 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "EMPLOYEE_MASTER"
+					"table": "STG_EMPLOYEE_MASTER"
 				}
 			},
 			"dependsOn": [
