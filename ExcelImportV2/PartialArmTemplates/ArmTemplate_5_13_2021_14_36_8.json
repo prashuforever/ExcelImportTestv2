@@ -1,0 +1,335 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ExcelImportV2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/dip_EmployeeMaster')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Import_EmployeeMaster",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"logSettings": {
+								"enableCopyActivityLog": true,
+								"copyActivityLogSettings": {
+									"logLevel": "Warning",
+									"enableReliableLogging": false
+								},
+								"logLocationSettings": {
+									"linkedServiceName": {
+										"referenceName": "AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									},
+									"path": "azurestorage"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EMP_NAME",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Deloitte Email",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DELOITTE_EMAIL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Deloitte MF",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DELOITTE_MF",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Cargill Email",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CARGILL_EMAIL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DSID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DSID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Cargill Manager",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CARGILL_MANAGER",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Onshore/Offshore",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LOC",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Active At Cargill",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ACTIVE_AT_CARGILL",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Primary Instance",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PRIMARY_INSTANCE",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EXT_EMPLOYEE_MASTER",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "STG_EMPLOYEE_MASTER",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/EXT_EMPLOYEE_MASTER')]",
+				"[concat(variables('factoryId'), '/datasets/STG_EMPLOYEE_MASTER')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXT_EMPLOYEE_MASTER')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Employee Master"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EMPLOYEE_MASTER",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EMPLOYEE_MASTER.xlsx",
+						"folderPath": "source",
+						"container": "azurestorage"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Name",
+						"type": "String"
+					},
+					{
+						"name": "Deloitte Email",
+						"type": "String"
+					},
+					{
+						"name": "Deloitte MF",
+						"type": "String"
+					},
+					{
+						"name": "Cargill Email",
+						"type": "String"
+					},
+					{
+						"name": "DSID",
+						"type": "String"
+					},
+					{
+						"name": "Cargill Manager",
+						"type": "String"
+					},
+					{
+						"name": "Onshore/Offshore",
+						"type": "String"
+					},
+					{
+						"name": "Active At Cargill",
+						"type": "String"
+					},
+					{
+						"name": "Primary Instance",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/STG_EMPLOYEE_MASTER')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Employee Master"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EMP_NAME",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DELOITTE_EMAIL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DELOITTE_MF",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CARGILL_EMAIL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DSID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CARGILL_MANAGER",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LOC",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ACTIVE_AT_CARGILL",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PRIMARY_INSTANCE",
+						"type": "nvarchar"
+					},
+					{
+						"name": "COMMENTS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TIMESTAMP",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "EMPLOYEE_MASTER"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "ExcelImportV2"
 		},
-		"AzureSqlDatabase1_connectionString": {
+		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
 		"containerUri": {
